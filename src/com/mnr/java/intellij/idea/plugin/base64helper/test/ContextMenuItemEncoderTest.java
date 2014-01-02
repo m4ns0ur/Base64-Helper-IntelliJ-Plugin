@@ -16,6 +16,6 @@ public class ContextMenuItemEncoderTest extends AbstractTestData {
         assertNotNull(contextMenuItemEncoder);
         String base64String = contextMenuItemEncoder.encodeDecode(TEST_STRING);
         assertNotNull(base64String);
-        assertEquals(BASE64_STRING, base64String);
+        assertEquals(BASE64_STRING_1, base64String);
     }
 }
