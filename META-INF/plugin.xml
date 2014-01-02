@@ -1,0 +1,60 @@
+<idea-plugin version="2">
+    <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
+    <name>Base64 Helper</name>
+    <version>1.0</version>
+    <!--    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>-->
+
+    <description><![CDATA[
+      It's a plugin to encode/decode [hex]string, based on Base64 algorithm.<br>
+      ]]></description>
+
+    <change-notes><![CDATA[
+      The 1st version.<br>
+      ]]>
+    </change-notes>
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="107.105"/>
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <group id="Base64HelperContextMenu" text="Base64 Helper" description="Base64 encode/decode helper" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </group>
+        <group id="Base64HelperContextMenuItems" text="Base64 Helper" description="Base64 encode/decode helper">
+            <add-to-group group-id="Base64HelperContextMenu" anchor="last"/>
+            <action id="Base64Encode" class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemEncoder"
+                    text="Base64 Encode" description="Base64 string encoder">
+            </action>
+            <action id="Base64Decode" class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemDecoder"
+                    text="Base64 Decode" description="Base64 string decoder">
+            </action>
+            <separator/>
+            <action id="Base64HexEncode"
+                    class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemHexEncoder"
+                    text="Base64 Hex Encode" description="Base64 hex string encoder">
+            </action>
+            <action id="Base64HexDecode"
+                    class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemHexDecoder"
+                    text="Base64 Hex Decode" description="Base64 hex string decoder">
+            </action>
+        </group>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your project components here -->
+    </extensions>
+</idea-plugin>
