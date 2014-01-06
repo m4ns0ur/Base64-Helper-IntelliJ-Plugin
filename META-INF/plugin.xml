@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor url="https://github.com/rahimi-mnr/Base64-Helper-IntelliJ-Plugin">Base64 Helper</vendor>
 
     <description><![CDATA[
@@ -9,7 +9,7 @@
       ]]></description>
 
     <change-notes><![CDATA[
-      The 1st version.<br>
+      Supports undo/redo in IDE editor.
       ]]>
     </change-notes>
 
