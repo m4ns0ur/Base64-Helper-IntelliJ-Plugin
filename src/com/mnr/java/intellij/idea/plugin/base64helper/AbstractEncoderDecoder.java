@@ -1,65 +1,46 @@
 package com.mnr.java.intellij.idea.plugin.base64helper;
 
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.Presentation;
-import com.intellij.openapi.application.Application;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorModificationUtil;
 import com.intellij.openapi.editor.SelectionModel;
+import com.intellij.openapi.editor.actionSystem.EditorAction;
+import com.intellij.openapi.editor.actionSystem.EditorWriteActionHandler;
 
 /**
  * @author mnr
  */
-public abstract class AbstractEncoderDecoder extends AnAction {
-    public static final String EDITOR = "editor";
+public abstract class AbstractEncoderDecoder extends EditorAction {
+    protected AbstractEncoderDecoder() {
+        super(null);
 
-    @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
-        DataContext dataContext = anActionEvent.getDataContext();
-        final Editor editor = getEditor(dataContext);
+        setupHandler(new EditorWriteActionHandler() {
+            @Override
+            public void executeWriteAction(Editor editor, DataContext dataContext) {
+                if (editor == null) {
+                    return;
+                }
 
-        if (editor == null) {
-            return;
-        }
+                final String selectedText = getEditorSelectedText(editor);
 
-        final String selectedText = getEditorSelectedText(editor);
-
-        if ((selectedText != null) && !selectedText.isEmpty()) {
-            Application application = ApplicationManager.getApplication();
-
-            if (application == null) {
-                return;
-            }
-
-            application.runWriteAction(new Runnable() {
-                @Override
-                public void run() {
+                if ((selectedText != null) && !selectedText.isEmpty()) {
                     String encodeDecode = encodeDecode(selectedText);
 
                     if (encodeDecode != null) {
                         EditorModificationUtil.insertStringAtCaret(editor, encodeDecode, true, true);
                     }
                 }
-            });
-        }
+            }
+        });
     }
 
     public abstract String encodeDecode(String selectedText);
 
     private String getEditorSelectedText(Editor editor) {
-        if (editor == null) {
-            return null;
-        }
-
         SelectionModel selectionModel = editor.getSelectionModel();
         return selectionModel.getSelectedText();
-    }
-
-    private Editor getEditor(DataContext dataContext) {
-        return (Editor) dataContext.getData(EDITOR);
     }
 
     @Override
