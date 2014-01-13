@@ -1,15 +1,29 @@
 <idea-plugin version="2">
     <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor url="https://github.com/rahimi-mnr/Base64-Helper-IntelliJ-Plugin">Base64 Helper</vendor>
 
     <description><![CDATA[
       It's a plugin to encode/decode [hex]string, based on Base64 algorithm.<br>
+	  <img src="files:///Base64Helper.png" alt="plugin screenshot" />
       ]]></description>
 
     <change-notes><![CDATA[
-      Supports undo/redo in IDE editor.
+		version 1.2:
+		<ul>
+			<li>Use shortcut (Ctrl+Alt+B) to show plugin popup menu</li>
+		</ul>
+
+		version 1.1:
+		<ul>
+			<li>Supports undo/redo in IDE editor</li>
+		</ul>
+
+		version 1.0:
+		<ul>
+			<li>Initial release</li>
+		</ul>
       ]]>
     </change-notes>
 
@@ -18,9 +32,7 @@
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
-    <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
-    -->
 
     <application-components>
         <!-- Add your application components here -->
@@ -33,23 +45,28 @@
     <actions>
         <group id="Base64HelperContextMenu" text="Base64 Helper" description="Base64 encode/decode helper" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <separator/>
         </group>
         <group id="Base64HelperContextMenuItems" text="Base64 Helper" description="Base64 encode/decode helper">
             <add-to-group group-id="Base64HelperContextMenu" anchor="last"/>
             <action id="Base64Encode" class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemEncoder"
                     text="Base64 Encode" description="Base64 string encoder">
+                <keyboard-shortcut first-keystroke="control alt B" second-keystroke="E" keymap="$default" />
             </action>
             <action id="Base64Decode" class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemDecoder"
                     text="Base64 Decode" description="Base64 string decoder">
+                <keyboard-shortcut first-keystroke="control alt B" second-keystroke="D" keymap="$default" />
             </action>
             <separator/>
             <action id="Base64HexEncode"
                     class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemHexEncoder"
                     text="Base64 Hex Encode" description="Base64 hex string encoder">
+                <keyboard-shortcut first-keystroke="control alt H" second-keystroke="E" keymap="$default" />
             </action>
             <action id="Base64HexDecode"
                     class="com.mnr.java.intellij.idea.plugin.base64helper.ContextMenuItemHexDecoder"
                     text="Base64 Hex Decode" description="Base64 hex string decoder">
+                <keyboard-shortcut first-keystroke="control alt H" second-keystroke="D" keymap="$default" />
             </action>
         </group>
     </actions>
