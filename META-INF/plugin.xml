@@ -6,13 +6,12 @@
 
     <description><![CDATA[
       It's a plugin to encode/decode [hex]string, based on Base64 algorithm.<br>
-	  <img src="files:///Base64Helper.png" alt="plugin screenshot" />
       ]]></description>
 
     <change-notes><![CDATA[
 		version 1.2:
 		<ul>
-			<li>Use shortcut (Ctrl+Alt+B) to show plugin popup menu</li>
+			<li>Add shortcuts (Ctrl+Alt+B,...)</li>
 		</ul>
 
 		version 1.1:
