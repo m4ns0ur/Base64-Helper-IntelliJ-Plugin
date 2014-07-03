@@ -2,7 +2,7 @@
     <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
     <version>1.3</version>
-    <vendor url="https://github.com/rahimi-mnr/Base64-Helper-IntelliJ-Plugin">Base64 Helper</vendor>
+    <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">Base64 Helper</vendor>
 
     <description><![CDATA[
       It's a plugin to encode/decode [hex]string, based on Base64 algorithm.<br>
