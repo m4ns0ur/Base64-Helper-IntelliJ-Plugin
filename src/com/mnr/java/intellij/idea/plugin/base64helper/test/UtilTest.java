@@ -3,9 +3,9 @@ package com.mnr.java.intellij.idea.plugin.base64helper.test;
 import com.mnr.java.intellij.idea.plugin.base64helper.Util;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * @author m.rahimi

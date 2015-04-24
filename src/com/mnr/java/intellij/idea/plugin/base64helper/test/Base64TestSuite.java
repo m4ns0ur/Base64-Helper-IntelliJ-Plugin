@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AbstractPopupItemTest.class,
+        AbstractpopupItemTest.class,
         UtilTest.class
 })
 public class Base64TestSuite extends TestSuite {

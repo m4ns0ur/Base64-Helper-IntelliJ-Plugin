@@ -171,6 +171,7 @@ public class MainActionHandler extends EditorAction {
                             String encodeDecode = popupItem.encodeDecode(selectedText);
 
                             if (encodeDecode != null) {
+                                encodeDecode = encodeDecode.replace('\r', '\0');
                                 EditorModificationUtil.insertStringAtCaret(editor, encodeDecode, true, true);
                             }
                         }
