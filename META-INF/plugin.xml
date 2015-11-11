@@ -9,7 +9,7 @@
       ]]></description>
 
     <change-notes><![CDATA[
-		version 1.5:
+		version 1.6:
 		<ul>
 			<li>Get back to use JDK 6, to be compatible with older projects</li>
 		</ul>
