@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
-    <version>1.5</version>
+    <version>1.6</version>
     <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">MNR</vendor>
 
     <description><![CDATA[
@@ -9,6 +9,11 @@
       ]]></description>
 
     <change-notes><![CDATA[
+		version 1.5:
+		<ul>
+			<li>Get back to use JDK 6, to be compatible with older projects</li>
+		</ul>
+
 		version 1.5:
 		<ul>
 			<li>Bug fix, shouldn't try to modify a read-only document</li>
