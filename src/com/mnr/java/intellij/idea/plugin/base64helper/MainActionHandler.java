@@ -155,26 +155,34 @@ public class MainActionHandler extends EditorAction {
             return;
         }
 
-        CommandProcessor.getInstance().executeCommand(openProjects[0], () -> ApplicationManager.getApplication().runWriteAction(() -> {
-            if (editor == null || !editor.getDocument().isWritable()) {
-                return;
+        CommandProcessor.getInstance().executeCommand(openProjects[0], new Runnable() {
+            @Override
+            public void run() {
+                ApplicationManager.getApplication().runWriteAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (editor == null || !editor.getDocument().isWritable()) {
+                            return;
+                        }
+
+                        final String selectedText = getEditorSelectedText(editor);
+
+                        if ((selectedText != null) && !selectedText.isEmpty()) {
+                            String encodeDecode = popupItem.encodeDecode(selectedText);
+
+                            if (encodeDecode != null) {
+                                encodeDecode = encodeDecode.replace('\r', '\0');
+                                EditorModificationUtil.insertStringAtCaret(editor, encodeDecode, true, true);
+                            }
+                        }
+                    }
+                });
             }
-
-            final String selectedText = getEditorSelectedText(editor);
-
-            if ((selectedText != null) && !selectedText.isEmpty()) {
-                String encodeDecode = popupItem.encodeDecode(selectedText);
-
-                if (encodeDecode != null) {
-                    encodeDecode = encodeDecode.replace('\r', '\0');
-                    EditorModificationUtil.insertStringAtCaret(editor, encodeDecode, true, true);
-                }
-            }
-        }), "Base64 Converter", null);
+        }, "Base64 Converter", null);
     }
 
     private List<PopupItem> getPopupItems() {
-        List<PopupItem> popupItemList = new ArrayList<>();
+        List<PopupItem> popupItemList = new ArrayList<PopupItem>();
         popupItemList.add(new EncoderPopupItem());
         popupItemList.add(new DecoderPopupItem());
         popupItemList.add(new HexEncoderPopupItem());
