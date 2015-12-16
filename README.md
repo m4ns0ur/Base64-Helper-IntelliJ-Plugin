@@ -1,4 +1,3 @@
-Base64-Helper-IntelliJ-Plugin
-=============================
+# Base64-Helper-IntelliJ-Plugin
 
-It's a plugin for encode/decode [hex]string based on Base64 algorithm.
+It's a plugin for encode/decode [**hex**]string based on Base64 algorithm.

@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
-    <version>1.7</version>
+    <version>1.8</version>
     <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">MNR</vendor>
 
     <description><![CDATA[
@@ -9,6 +9,12 @@
       ]]></description>
 
     <change-notes><![CDATA[
+		version 1.8:
+		<ul>
+			<li>Bug fix, the undo doesn't work sometimes</li>
+			<li>Update the license info</li>
+		</ul>
+
 		version 1.7:
 		<ul>
 			<li>Fix the typos inside the plugin.xml</li>
