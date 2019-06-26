@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.mnr.intellij.plugin.base64helper</id>
+    <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
     <version>2.0</version>
     <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">m4ns0ur</vendor>
