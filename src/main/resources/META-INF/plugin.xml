@@ -1,14 +1,21 @@
-<idea-plugin version="2">
-    <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
+<idea-plugin>
+    <id>com.mnr.intellij.plugin.base64helper</id>
     <name>Base64 Helper</name>
-    <version>1.8</version>
-    <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">MNR</vendor>
+    <version>2.0</version>
+    <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">m4ns0ur</vendor>
 
     <description><![CDATA[
       It's a plugin to encode/decode [hex]string, based on Base64 algorithm.<br>
       ]]></description>
 
     <change-notes><![CDATA[
+		version 2.0:
+		<ul>
+			<li>Convert project to gradle-based intellij platform plugin</li>
+			<li>Fix issue with reverting conversion</li>
+			<li>It does not show popup/menu-item, if there is no text selected</li>
+		</ul>
+
 		version 1.8:
 		<ul>
 			<li>Bug fix, the undo doesn't work sometimes</li>
@@ -74,7 +81,7 @@
     </project-components>
 
     <actions>
-        <action id="Base64HelperPopup" class="com.mnr.java.intellij.idea.plugin.base64helper.MainActionHandler"
+        <action id="Base64HelperPopup" class="com.mnr.intellij.plugin.base64helper.MainActionHandler"
                 text="Base64 Helper">
             <keyboard-shortcut first-keystroke="ctrl alt 6" keymap="$default"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>

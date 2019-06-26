@@ -14,20 +14,28 @@
  * limitations under the License.
  */
 
-package com.mnr.java.intellij.idea.plugin.base64helper;
+package com.mnr.intellij.plugin.base64helper;
+
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * @author m.rahimi
  */
-public abstract class AbstractPopupItem implements PopupItem {
-    @Override
-    public abstract String getText();
+public class UtilTest extends AbstractTestData {
 
-    @Override
-    public Boolean isSelectable(String selectedText) {
-        return (selectedText != null) && !selectedText.isEmpty();
+    @Test
+    public void testIsHex() {
+        assertTrue(Util.isHex(HEX_TEST_STRING));
+        assertFalse(Util.isHex(TEST_STRING));
     }
 
-    @Override
-    public abstract String encodeDecode(String selectedText);
+    @Test
+    public void testMakeEvenHexDigit() {
+        assertEquals("0" + HEX_TEST_STRING, Util.makeEvenHexDigit(HEX_TEST_STRING));
+        assertEquals(TEST_STRING, Util.makeEvenHexDigit(TEST_STRING));
+    }
 }

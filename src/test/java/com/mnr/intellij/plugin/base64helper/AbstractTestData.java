@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.mnr.java.intellij.idea.plugin.base64helper.test;
-
-import junit.framework.TestSuite;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+package com.mnr.intellij.plugin.base64helper;
 
 /**
  * @author m.rahimi
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-        AbstractpopupItemTest.class,
-        UtilTest.class
-})
-public class Base64TestSuite extends TestSuite {
+class AbstractTestData {
+
+    static final String TEST_STRING = "This is a test string!";
+    static final String BASE64_STRING_1 = "VGhpcyBpcyBhIHRlc3Qgc3RyaW5nIQ==";
+
+    static final String TEST_STRING_WITH_LINE_FEED = "{\n\t\"foo\": \"bar\",\n\n}";
+    static final String BASE64_STRING_2 = "ewoJImZvbyI6ICJiYXIiLAoKfQ==";
+
+    static final String HEX_TEST_STRING = "bcdefABCDEF";
+    static final String BASE64_STRING_3 = "C83vq83v";
 }

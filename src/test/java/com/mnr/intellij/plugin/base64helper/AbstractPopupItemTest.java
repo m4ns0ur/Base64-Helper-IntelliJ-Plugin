@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.mnr.java.intellij.idea.plugin.base64helper.test;
+package com.mnr.intellij.plugin.base64helper;
 
-import com.mnr.java.intellij.idea.plugin.base64helper.*;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
@@ -24,10 +23,10 @@ import static junit.framework.TestCase.*;
 /**
  * @author m.rahimi
  */
-public class AbstractpopupItemTest extends AbstractTestData {
+public class AbstractPopupItemTest extends AbstractTestData {
 
     @Test
-    public void testEncodeDecode() throws Exception {
+    public void testEncodeDecode() {
         EncoderPopupItem encoderPopupItem = new EncoderPopupItem();
         assertNotNull(encoderPopupItem);
         assertTrue(encoderPopupItem.isSelectable(BASE64_STRING_1));

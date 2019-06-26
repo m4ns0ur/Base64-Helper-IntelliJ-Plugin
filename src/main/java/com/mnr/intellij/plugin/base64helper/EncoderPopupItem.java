@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-package com.mnr.java.intellij.idea.plugin.base64helper;
+package com.mnr.intellij.plugin.base64helper;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.Hex;
 
 /**
  * @author m.rahimi
  */
-public class HexDecoderPopupItem extends AbstractPopupItem {
+public class EncoderPopupItem extends AbstractPopupItem {
 
-    public static final String TEXT = "Base64 Hex String Decoder";
+    private static final String TEXT = "Base64 String Encoder";
 
     @Override
     public String getText() {
@@ -32,12 +31,7 @@ public class HexDecoderPopupItem extends AbstractPopupItem {
     }
 
     @Override
-    public Boolean isSelectable(String selectedText) {
-        return super.isSelectable(selectedText) && Base64.isBase64(selectedText);
-    }
-
-    @Override
     public String encodeDecode(String selectedText) {
-        return Hex.encodeHexString(Base64.decodeBase64(selectedText)).toUpperCase();
+        return Base64.encodeBase64String(selectedText.getBytes());
     }
 }
