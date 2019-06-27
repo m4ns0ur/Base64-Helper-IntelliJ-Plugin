@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.mnr.intellij.plugin'
-version '2.0-SNAPSHOT'
+version '2.0.1'
 
 sourceCompatibility = 1.8
 
@@ -22,6 +22,11 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
+		version 2.0.1:
+		<ul>
+			<li>Icon added for the plugin</li>
+		</ul>
+
 		version 2.0:
 		<ul>
 			<li>Convert project to gradle-based intellij platform plugin</li>
