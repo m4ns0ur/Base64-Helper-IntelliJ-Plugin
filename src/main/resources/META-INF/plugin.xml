@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.mnr.java.intellij.idea.plugin.base64helper</id>
     <name>Base64 Helper</name>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <vendor url="http://plugins.jetbrains.com/plugin/7372?pr=idea">m4ns0ur</vendor>
 
     <description>
@@ -24,6 +24,11 @@
 
     <change-notes>
         <![CDATA[
+		version 2.0.3:
+		<ul>
+			<li>Fix pop-up menu handler</li>
+		</ul>
+
 		version 2.0.2:
 		<ul>
 			<li>Remove build number limitation</li>

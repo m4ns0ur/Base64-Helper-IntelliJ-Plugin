@@ -86,6 +86,8 @@ public class MainActionHandler extends EditorAction {
     private ListPopupStep getStep(final Editor editor) {
         return new ListPopupStep() {
 
+            private PopupItem item;
+
             @NotNull
             @Override
             public List getValues() {
@@ -134,7 +136,7 @@ public class MainActionHandler extends EditorAction {
             @Nullable
             @Override
             public PopupStep onChosen(final Object o, boolean b) {
-                processSelection((PopupItem) o, editor);
+                item = (PopupItem)o;
                 return null;
             }
 
@@ -177,7 +179,7 @@ public class MainActionHandler extends EditorAction {
             @Nullable
             @Override
             public Runnable getFinalRunnable() {
-                return null;
+                return () -> processSelection(item, editor);
             }
         };
     }
