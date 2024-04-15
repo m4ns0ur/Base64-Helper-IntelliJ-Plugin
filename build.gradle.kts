@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.mnr.intellij.plugin"
-version = "3.0.0"
+version = "4.0.0"
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2023.1.5")
+    version.set("2023.3.2")
     type.set("IC") // Target IDE Platform
 
     plugins.set(listOf(/* Plugin Dependencies */))
@@ -31,9 +31,14 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("231")
+        sinceBuild.set("233")
         untilBuild.set("241.*")
         changeNotes.set("""
+            version 4.0.0:
+            <ul>
+                <li>Using new Intellij <a href="https://plugins.jetbrains.com/docs/intellij/general-threading-rules.html">threading</a></li>
+            </ul>
+    
             version 3.0.0:
             <ul>
                 <li>Using new Intellij plugin framework</li>

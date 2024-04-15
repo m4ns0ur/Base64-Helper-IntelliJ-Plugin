@@ -16,25 +16,18 @@
 
 package com.mnr.intellij.plugin.base64helper;
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
+import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.actionSystem.DataContext;
+import com.intellij.openapi.application.ReadAction;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.SelectionModel;
-import com.intellij.openapi.editor.actionSystem.EditorAction;
-import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
-import com.intellij.openapi.ui.popup.JBPopupFactory;
-import com.intellij.openapi.ui.popup.ListPopup;
-import com.intellij.openapi.ui.popup.ListPopupStep;
-import com.intellij.openapi.ui.popup.ListSeparator;
-import com.intellij.openapi.ui.popup.MnemonicNavigationFilter;
-import com.intellij.openapi.ui.popup.PopupStep;
-import com.intellij.openapi.ui.popup.SpeedSearchFilter;
+import com.intellij.openapi.ui.popup.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,36 +38,35 @@ import java.util.List;
 /**
  * @author m.rahimi
  */
-public class MainActionHandler extends EditorAction {
+public class MainActionHandler extends AnAction {
 
     private static final String POPUP_MENU_TITLE = "Base64 Helper";
     private static final String ENCODER_SEPARATOR_TITLE = "String";
     private static final String HEX_ENCODER_SEPARATOR_STRING = "Hex String";
 
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
+    }
 
-    protected MainActionHandler() {
-        super(null);
-        setupHandler(getEditorActionHandler());
+    public MainActionHandler() {
+        super();
     }
 
     @Override
-    public void update(@NotNull AnActionEvent e) {
-        final Project project = e.getProject();
-        final Editor editor = e.getData(CommonDataKeys.EDITOR);
-        e.getPresentation().setVisible(project != null && editor != null && editor.getSelectionModel().hasSelection());
+    public void update(@NotNull AnActionEvent event) {
+        Project project = event.getProject();
+        Editor editor = event.getData(CommonDataKeys.EDITOR);
+        event.getPresentation().setEnabledAndVisible(project != null && editor != null && editor.getSelectionModel().hasSelection());
     }
 
-    private EditorActionHandler getEditorActionHandler() {
-        return new EditorActionHandler() {
-
-            @Override
-            protected void doExecute(Editor editor, @Nullable Caret caret, DataContext dataContext) {
-                if (editor != null && editor.getSelectionModel().hasSelection()) {
-                    ListPopup listPopup = getListPopup(editor);
-                    listPopup.showInBestPositionFor(editor);
-                }
-            }
-        };
+    @Override
+    public void actionPerformed(@NotNull AnActionEvent event) {
+        final Editor editor = event.getRequiredData(CommonDataKeys.EDITOR);
+        if (editor.getSelectionModel().hasSelection()) {
+            ListPopup listPopup = getListPopup(editor);
+            listPopup.showInBestPositionFor(editor);
+        }
     }
 
     private ListPopup getListPopup(Editor editor) {
@@ -186,26 +178,29 @@ public class MainActionHandler extends EditorAction {
 
     private void processSelection(final PopupItem popupItem, final Editor editor) {
         final Project[] openProjects = ProjectManager.getInstance().getOpenProjects();
-        if (openProjects.length <= 0) {
+        if (openProjects.length == 0) {
             return;
         }
-
+        final Project project = openProjects[0];
         final Document document = editor.getDocument();
-        WriteCommandAction.runWriteCommandAction(openProjects[0], () -> {
+        final Caret primaryCaret = editor.getCaretModel().getPrimaryCaret();
+        int start = primaryCaret.getSelectionStart();
+        int end = primaryCaret.getSelectionEnd();
+        WriteCommandAction.runWriteCommandAction(project, () -> {
             if (!document.isWritable()) {
                 return;
             }
-
             final String selectedText = getEditorSelectedText(editor);
             if ((selectedText != null) && !selectedText.isEmpty()) {
                 String encodeDecode = popupItem.encodeDecode(selectedText);
                 if (encodeDecode != null) {
                     encodeDecode = encodeDecode.replace('\r', '\0');
-                    final SelectionModel selectionModel = editor.getSelectionModel();
-                    document.replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), encodeDecode);
+                    document.replaceString(start, end, encodeDecode);
                 }
             }
         });
+        primaryCaret.removeSelection();
+        primaryCaret.moveToOffset(start);
     }
 
     private List<PopupItem> getPopupItems() {
@@ -218,6 +213,10 @@ public class MainActionHandler extends EditorAction {
     }
 
     private String getEditorSelectedText(Editor editor) {
-        return editor.getSelectionModel().getSelectedText();
+        final String[] selectedText = new String[1];
+        ReadAction.run(() -> {
+            selectedText[0] = editor.getSelectionModel().getSelectedText();
+        });
+        return selectedText[0];
     }
 }

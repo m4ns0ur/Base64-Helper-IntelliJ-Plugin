@@ -7,7 +7,7 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Base64 Helper</name>
 
-    <version>3.0.0</version>
+    <version>4.0.0</version>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="rahimi.mnr@gmail.com" url="http://plugins.jetbrains.com/plugin/7372?pr=idea">m4ns0ur</vendor>
@@ -25,7 +25,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
-    <idea-version since-build="107.105"/>
+    <idea-version since-build="222.3345.118"/>
 
     <actions>
         <action id="Base64HelperPopup" class="com.mnr.intellij.plugin.base64helper.MainActionHandler"
@@ -43,6 +43,11 @@
 
     <change-notes>
         <![CDATA[
+		version 4.0.0:
+		<ul>
+			<li>Using new Intellij <a href="https://plugins.jetbrains.com/docs/intellij/general-threading-rules.html">threading</a></li>
+		</ul>
+
 		version 3.0.0:
 		<ul>
 			<li>Using new Intellij plugin framework</li>
