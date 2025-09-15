@@ -1,11 +1,11 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.21"
-    id("org.jetbrains.intellij") version "1.16.1"
+    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    id("org.jetbrains.intellij") version "1.17.3"
 }
 
 group = "com.mnr.intellij.plugin"
-version = "4.0.0"
+version = "4.0.1"
 
 repositories {
     mavenCentral()
@@ -32,8 +32,13 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("233")
-        untilBuild.set("241.*")
+        untilBuild.set("252.*")
         changeNotes.set("""
+            version 4.0.1:
+            <ul>
+                <li>Fix issue with pop-up menu not showing in some contexts</li>
+            </ul>
+            
             version 4.0.0:
             <ul>
                 <li>Using new Intellij <a href="https://plugins.jetbrains.com/docs/intellij/general-threading-rules.html">threading</a></li>
