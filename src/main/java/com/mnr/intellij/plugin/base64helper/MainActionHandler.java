@@ -213,6 +213,10 @@ public class MainActionHandler extends AnAction {
     }
 
     private String getEditorSelectedText(Editor editor) {
-        return ReadAction.compute(() -> editor.getSelectionModel().getSelectedText());
+        final String[] selectedText = new String[1];
+        ReadAction.run(() -> {
+            selectedText[0] = editor.getSelectionModel().getSelectedText();
+        });
+        return selectedText[0];
     }
 }

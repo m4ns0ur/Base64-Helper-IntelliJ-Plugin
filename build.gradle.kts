@@ -32,7 +32,8 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("233")
-        untilBuild.set("252.*")
+        // Remove the limitation on the maximum supported build to avoid IDEs installing the outdated 2.0.8 release
+        untilBuild.set("")
         changeNotes.set("""
             version 4.0.1:
             <ul>
