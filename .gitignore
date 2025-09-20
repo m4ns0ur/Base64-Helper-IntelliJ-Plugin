@@ -7,3 +7,5 @@ gradlew
 gradlew.bat
 *.zip
 build/
+.intellijPlatform/
+

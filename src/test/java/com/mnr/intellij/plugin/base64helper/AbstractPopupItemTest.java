@@ -16,9 +16,9 @@
 
 package com.mnr.intellij.plugin.base64helper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static junit.framework.TestCase.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author m.rahimi
